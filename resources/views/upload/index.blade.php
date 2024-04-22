@@ -28,9 +28,6 @@
                         @endif
                     </div>
 
-                    <img src="myuploads/show/12">
-                    <embed src="http://127.0.0.1:8000/myuploads/show/13">
-
                 </div>
             </div>
         </div>

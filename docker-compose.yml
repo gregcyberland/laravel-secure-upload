@@ -1,0 +1,33 @@
+version: "3.7"
+services:
+  app:
+    build:
+      args:
+        user: gregbalonzo
+        uid: 1000
+      context: ./
+      dockerfile: Dockerfile
+    image: laravel-image
+    container_name: container-laravel
+    restart: unless-stopped
+    working_dir: /var/www/
+    volumes:
+      - ./:/var/www
+    networks:
+      - network-laravel
+  nginx:
+    image: nginx:alpine
+    container_name: nginx-container-laravel
+    restart: unless-stopped
+    ports:
+      - 80:80
+    volumes:
+      - ./:/var/www
+      - ./docker-compose/nginx:/etc/nginx/conf.d/
+    networks:
+      - network-laravel
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+networks:
+  network-laravel:
+    driver: bridge

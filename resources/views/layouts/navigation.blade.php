@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('dashboard') }}">
-                        <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
+                       <b>T A M</b>
                     </a>
                 </div>
 
@@ -18,6 +18,26 @@
                     <x-nav-link :href="route('upload.index')" :active="request()->routeIs('upload.index')">
                         {{ __('My Uploads') }}
                     </x-nav-link>
+
+                    @if(Auth::user()->account == 'admin')
+                    <x-nav-link :href="route('admin.index')" :active="request()->routeIs('admin.index')">
+                        {{ __('Admin') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.settings')" :active="request()->routeIs('admin.settings')">
+                        {{ __('Settings') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('admin.killall')" :active="request()->routeIs('admin.killall')">
+                        {{ __('Kill All') }}
+                    </x-nav-link>
+                    @else
+                    <x-nav-link :href="route('staff.index')" :active="request()->routeIs('staff.index')">
+                        {{ __('Request Access') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('staff.history')" :active="request()->routeIs('staff.history')">
+                        {{ __('History') }}
+                    </x-nav-link>
+                    @endif
+
                 </div>
             </div>
 
